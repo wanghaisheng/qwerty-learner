@@ -58,13 +58,15 @@ function extractContentsFromTextFile(filePath) {
 }
 
 if (require.main === module) {
-    const filePath = "桂林古本伤寒杂病论·简体.txt"; // Use your file name
+    // const filePath = "桂林古本伤寒杂病论·简体.txt"; // Use your file name
+    // const filePath = "伤寒杂病论·桂林古本·繁体.txt"; // Use your file name
+    const filePath = "伤寒论背诵条文-宋.txt"; // Use your file name
 
     const jsonOutput = extractContentsFromTextFile(filePath);
 
     if (jsonOutput) {
         console.log(jsonOutput);
         // Optionally save to json file:
-        fs.writeFileSync("output_guilin_formula_names_fixed_bom.json", jsonOutput, 'utf-8');
+        fs.writeFileSync("output_song-jianti.json", jsonOutput, 'utf-8');
     }
 }
