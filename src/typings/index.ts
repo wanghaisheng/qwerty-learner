@@ -3,7 +3,11 @@ export * from './resource'
 export type PronunciationType = 'us' | 'uk' | 'romaji' | 'zh' | 'ja' | 'de'
 export type PhoneticType = 'us' | 'uk' | 'romaji' | 'zh' | 'ja' | 'de'
 export type LanguageType = 'en' | 'romaji' | 'zh' | 'ja' | 'code' | 'de'|'shanghan'
-export type LanguageCategoryType = 'en' | 'ja' | 'de' | 'code'|'shanghan'
+export type LanguageCategoryType = 'en' | 'ja' | 'de' | 'code'|'shanghan'|'zhuangzi'|'fuxingjue'|'huangdineijing'|'zhenjiu'
+
+
+
+
 
 type Pronunciation2PhoneticMap = Record<PronunciationType, PhoneticType>
 

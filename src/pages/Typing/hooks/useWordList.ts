@@ -18,16 +18,36 @@ export function useWordList(): UseWordListResult {
   const currentDictInfo = useAtomValue(currentDictInfoAtom)
   const [currentChapter, setCurrentChapter] = useAtom(currentChapterAtom)
 
+  console.log('useWordList: currentDictInfo from atom:', currentDictInfo); // Debug 1: Log currentDictInfo immediately
+
+  if (!currentDictInfo) {
+    console.log('useWordList: currentDictInfo is UNDEFINED!'); // Debug 2: Log if currentDictInfo is undefined
+    return { words: undefined, isLoading: false, error: undefined }; // Early return if undefined
+  }
+
+  console.log('useWordList: ========= currentDictInfo.id:', currentDictInfo.id); // Original log - now should be safe
+
   const isFirstChapter = currentDictInfo.id === 'guilinguben_jianti' && currentChapter === 0
+
+  console.log('useWordList: currentChapter:', currentChapter);
+  console.log('useWordList: currentDictInfo.chapterCount:', currentDictInfo.chapterCount);
 
   // Reset current chapter to 0, when currentChapter is greater than chapterCount.
   if (currentChapter >= currentDictInfo.chapterCount) {
+    console.log('useWordList: Resetting currentChapter because it exceeded chapterCount');
     setCurrentChapter(0)
   }
 
-  const { data: wordList, error, isLoading } = useSWR(currentDictInfo.url, wordListFetcher)
+  const urlForSWR = currentDictInfo.url;
+  console.log('useWordList: URL for useSWR:', urlForSWR);
+  const { data: wordList, error, isLoading } = useSWR(urlForSWR, wordListFetcher)
 
   const words: WordWithIndex[] = useMemo(() => {
+    console.log('useWordList: useMemo callback executing');
+    console.log('useWordList: useMemo - isFirstChapter:', isFirstChapter);
+    console.log('useWordList: useMemo - wordList (from SWR):', wordList);
+    console.log('useWordList: useMemo - currentChapter:', currentChapter);
+
     const newWords = isFirstChapter
       ? firstChapter
       : wordList
@@ -42,10 +62,15 @@ export function useWordList(): UseWordListResult {
 }
 
 async function wordListFetcher(url: string): Promise<Word[]> {
-  const URL_PREFIX: string = REACT_APP_DEPLOY_ENV === 'pages' ? '/qwerty-learner' : ''
+  console.log('wordListFetcher: Fetching URL:', url);
+  const URL_PREFIX: string = import.meta.env.REACT_APP_DEPLOY_ENV === 'pages' ? '/qwerty-learner' : ''; // Use import.meta.env for Vite
+  const fullURL = URL_PREFIX + url;
+  console.log('wordListFetcher: Full URL:', fullURL);
 
-  const response = await fetch(URL_PREFIX + url)
-  const words: Word[] = await response.json()
+  const response = await fetch(fullURL);
+  console.log('wordListFetcher: Fetch Response Status:', response.status);
+  const words: Word[] = await response.json();
+  console.log('wordListFetcher: Fetched words:', words.length, 'words');
   return words
 }
 

@@ -14,10 +14,12 @@ export type LanguageTabOption = {
 }
 
 const options: LanguageTabOption[] = [
-  { id: 'en', name: '英语', flag: enFlag },
-  { id: 'ja', name: '日语', flag: jpFlag },
-  { id: 'de', name: '德语', flag: deFlag },
-  { id: 'code', name: 'Code', flag: codeFlag },
+  { id: 'zhuangzi', name: '庄子', flag: enFlag },
+  { id: 'fuxingjue', name: '辅行诀', flag: jpFlag },
+  { id: 'huangdineijing', name: '内经', flag: deFlag },
+  { id: 'zhenjiu', name: '针灸', flag: codeFlag },
+  { id: 'shanghan', name: '伤寒', flag: codeFlag },
+
 ]
 
 export function LanguageTabSwitcher() {
