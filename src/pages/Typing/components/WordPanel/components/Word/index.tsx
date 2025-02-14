@@ -270,9 +270,10 @@ export default function WordComponent({ word, onFinish }: { word: Word; onFinish
         {currentLanguage === 'romaji' && word.notation && <Notation notation={word.notation} />}
         <div className="relative">
           <div
+
             onMouseEnter={() => handleHoverWord(true)}
             onMouseLeave={() => handleHoverWord(false)}
-            className={`flex items-center ${isTextSelectable && 'select-all'} justify-center ${wordState.hasWrong ? style.wrong : ''}`}
+            className={`flex flex-wrap items-center ${isTextSelectable && 'select-all'} justify-center ${wordState.hasWrong ? style.wrong : ''}`}
           >
             {wordState.displayWord.split('').map((t, index) => {
               return <Letter key={`${index}-${t}`} letter={t} visible={getLetterVisible(index)} state={wordState.letterStates[index]} />

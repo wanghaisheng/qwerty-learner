@@ -35,12 +35,22 @@ export default function PrevAndNextWord({ type }: LastAndNextWordProps) {
   const headWord = useMemo(() => {
     if (!word) return ''
 
-    if (type === 'prev') return word.name
-
-    if (type === 'next') {
-      return !wordDictationConfig.isOpen ? word.name : word.name.replace(/./g, '_')
+    let displayedWord = '';
+    if (type === 'prev') {
+      displayedWord = word.name;
+    } else if (type === 'next') {
+      displayedWord = !wordDictationConfig.isOpen ? word.name : word.name.replace(/./g, '_');
+    } else {
+      return ''; // Should not happen, but for safety
     }
-  }, [wordDictationConfig.isOpen, type, word])
+
+    if (displayedWord.length > 12) {
+      return displayedWord.substring(0, 12) + '...'; // Truncate to 8 chars and add ellipsis
+    } else {
+      return displayedWord;
+    }
+  }, [wordDictationConfig.isOpen, type, word]);
+
 
   return (
     <>
