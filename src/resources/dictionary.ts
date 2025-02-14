@@ -5,7 +5,7 @@ import { calcChapterCount } from '@/utils'
 // 德语词典
 const shanghanBook: DictionaryResource[] = [
   {
-    id: 'guilinguben-jianti',
+    id: 'guilinguben_jianti',
     name: '桂林古本伤寒论 白云阁版本',
     description: '桂林罗哲初  手抄',
     category: '伤寒论',
@@ -16,7 +16,7 @@ const shanghanBook: DictionaryResource[] = [
     languageCategory: 'shanghan',
   },
   {
-    id: 'guilinguben-fanti',
+    id: 'guilinguben_fanti',
     name: '桂林古本伤寒论 白云阁版本',
     description: '桂林罗哲初  手抄',
     category: '伤寒论',
@@ -27,7 +27,7 @@ const shanghanBook: DictionaryResource[] = [
     languageCategory: 'shanghan',
   },  
   {
-    id: 'song-jianti',
+    id: 'song_jianti',
     name: '宋 简体 伤寒论',
     description: 'xxxxxx',
     category: '伤寒论',
