@@ -18,7 +18,7 @@ export function useWordList(): UseWordListResult {
   const currentDictInfo = useAtomValue(currentDictInfoAtom)
   const [currentChapter, setCurrentChapter] = useAtom(currentChapterAtom)
 
-  const isFirstChapter = currentDictInfo.id === 'cet4' && currentChapter === 0
+  const isFirstChapter = currentDictInfo.id === 'guilinguben_jianti' && currentChapter === 0
 
   // Reset current chapter to 0, when currentChapter is greater than chapterCount.
   if (currentChapter >= currentDictInfo.chapterCount) {
